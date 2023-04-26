@@ -11,7 +11,7 @@ class hakaksesController extends Controller
     public function index()
     {
         $data_pegawai = tb_pegawai::all();
-        return view('hakakses', ['data_pegawai' => $data_pegawai]);
+        return view('admin.hakakses.index', ['data_pegawai' => $data_pegawai]);
     }
     public function actionTambah(Request $request)
     {

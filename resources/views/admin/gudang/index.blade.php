@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('admin.navbar')
 @section('container')
 @vite(['resources/css/app.css','resources/js/app.js'])
 <div class="w-full p-4 ">

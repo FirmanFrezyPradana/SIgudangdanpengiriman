@@ -41,17 +41,15 @@ Route::get('jadwal', function () {
 });
 
 // hak akses
-Route::get('hakakses', function () {
-    return view('admin.hakakses');
-})->name('hakakses');
-// Route::get('hakakses',[hakaksesController::class,'index'])
-Route::post('hakakses/actionTambah', [hakaksesController::class, 'actionTambah'])->name('actionTambahhakakases');
+Route::get('admin/hakakses', [hakaksesController::class, 'index'])->name('hakakses');
+Route::post('admin/hakakses/actionTambah', [hakaksesController::class, 'actionTambah'])->name('actionTambahhakakases');
+
 // gudang
-Route::get('gudang', function () {
-    return view('admin.gudang');
-});
+Route::get('admin.gudang', function () {
+    return view('admin.gudang.index');
+})->name('gudang');
 
 // rute
 Route::get('rute', function () {
-    return view('admin.track');
+    return view('admin.track.index');
 });

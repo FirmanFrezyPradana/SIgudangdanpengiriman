@@ -10,7 +10,6 @@
     @vite('resources/css/app.css')
     <!-- flowbit -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-    @extends('navbar')
     <script script type="text/javascript">
         $(document).ready(function() {
             $('#tabel-data').DataTable();
