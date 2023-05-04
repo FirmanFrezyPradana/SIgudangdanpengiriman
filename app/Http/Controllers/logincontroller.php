@@ -8,14 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class logincontroller extends Controller
 {
     //
-    public function login()
+    public function index()
     {
         if (Auth::check()) {
-            // dd("berhasil login");
-            return redirect()->route('dashboardAdmin');
-        } else {
-            return view('login');
+            return redirect('/admin/dashboard');
         }
+        return view('login');
     }
 
     public function actionlogin(Request $request)
@@ -26,10 +24,12 @@ class logincontroller extends Controller
             'password' => 'required',
         ]);
         if (Auth::attempt($validate)) {
-            // dd("login berhasil");
+            $request->session()->regenerate();
             return redirect()->route('dashboardAdmin');
         }
-        return back()->with('loginError', 'Login failed!');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
     public function actionlogout(Request $request)

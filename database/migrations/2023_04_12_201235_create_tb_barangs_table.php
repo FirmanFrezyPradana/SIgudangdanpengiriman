@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_gudang');
             $table->unsignedBigInteger('id_kategori');
             $table->string('satuan');
+            $table->integer('harga');
             $table->integer('stoke_awal');
             $table->integer('stoke_masuk');
             $table->integer('stoke_keluar');

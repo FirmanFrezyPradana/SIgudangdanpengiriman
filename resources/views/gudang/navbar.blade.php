@@ -1,3 +1,4 @@
+@extends('admin.main')
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
@@ -9,7 +10,7 @@
                     </svg>
                 </button>
                 <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">SiAdmin</span>
                 </a>
             </div>
         </div>
@@ -39,19 +40,19 @@
                 </div>
             </div>
             <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('pengguna')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Pengguna</span>
                 </a>
-                <a href="hakakses" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('hakakses')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Hak Akses</span>
                 </a>
-                <a href="gudang" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('gudang')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Gudang</span>
                 </a>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('sopir')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Sopir</span>
                 </a>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('outlet')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Outlet</span>
                 </a>
             </div>
@@ -69,25 +70,28 @@
                 </div>
             </li>
             <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu">
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('stok')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Stoke Barang</span>
                 </a>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('pemesanan')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <span class="flex-1 ml-3 whitespace-nowrap">Pemesanan</span>
+                </a>
+                <a href="{{route('pengiriman')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Pengiriman</span>
                 </a>
-                <a href="rute" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('track')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Track</span>
                 </a>
             </div>
             <!-- end master barang -->
             <li>
-                <a href="jadwal" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('jadwal')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="bi bi-calendar-week w-6"></i>
                     <span class="flex-1 ml-3 whitespace-nowrap">Jadwal</span>
                 </a>
             </li>
             <li>
-                <a href="kendaraan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{route('kendarann')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="bi  bi-truck w-6"></i>
                     <span class="flex-1 ml-3 whitespace-nowrap">Kendaraan</span>
                 </a>
@@ -130,7 +134,3 @@
     dropdown2();
     // end dopdown
 </script>
-
-<!-- <div>
-    @yield('container')
-</div> -->

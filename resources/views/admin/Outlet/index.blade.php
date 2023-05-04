@@ -1,11 +1,11 @@
-@extends('layout.main')
+@extends('admin.navbar')
 @section('container')
 @vite(['resources/css/app.css','resources/js/app.js'])
 <div class="w-full p-4 ">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
-                + Tujuan
+                + outlet
             </button>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-gra-400 dark:text-white">
@@ -13,13 +13,10 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Sesi Pengiriman
+                        Nama Gudang
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        jam berangkat
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        tujuan
+                        Alamat
                     </th>
                     <th scope="col" class="px-6 py-3">
                         action
@@ -32,13 +29,10 @@
                         1
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        2
+                        Gudang Lowaksari
                     </th>
                     <td class="px-6 py-4">
-                        07.00
-                    </td>
-                    <td class="px-6 py-4">
-                        kab.trenggalek,kab.Tulungagung,kab.Madiun
+                        lowaksari no 245 jl kebangsaan timur
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Edit</a>
