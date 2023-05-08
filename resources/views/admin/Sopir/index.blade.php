@@ -8,15 +8,15 @@
                 + sopir
             </button>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr class="text-gra-400 dark:text-white">
+                <tr class="text-gra-400 text-center dark:text-white">
                     <th scope="col" class="p-4">
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama Gudang
+                        Nama Sopir
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Alamat
+                        SIM
                     </th>
                     <th scope="col" class="px-6 py-3">
                         action
@@ -24,15 +24,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="w-4 p-4">
                         1
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Gudang Lowaksari
+                        Firman
                     </th>
                     <td class="px-6 py-4">
-                        lowaksari no 245 jl kebangsaan timur
+                        A,B1,C
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Edit</a>

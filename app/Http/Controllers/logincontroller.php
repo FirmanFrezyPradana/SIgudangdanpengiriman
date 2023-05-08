@@ -10,35 +10,50 @@ class logincontroller extends Controller
     //
     public function index()
     {
-        if (Auth::check()) {
-            return redirect('/admin/dashboard');
-        }
         return view('login');
     }
 
     public function actionlogin(Request $request)
     {
+        $input = $request->all();
 
         $validate = $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt($validate)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboardAdmin');
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->id_pegawai == 1) {
+                return redirect()->route('dashboardAdmin');
+            }
+        } else {
+            return redirect()->route('login');
         }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->id_pegawai == 2) {
+                return redirect()->route('gudangdashboard');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->id_pegawai == 3) {
+                return redirect()->route('penggunadashboard');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->id_pegawai == 4) {
+                return redirect()->route('sopirdashboard');
+            }
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function actionlogout(Request $request)
     {
-        // dd('berhasil logout');
         Auth::logout();
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 }

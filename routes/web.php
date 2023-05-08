@@ -1,21 +1,31 @@
 <?php
 
-use App\Http\Controllers\admincontroller;
-use App\Http\Controllers\barangController;
-use App\Http\Controllers\gudangController;
-use App\Http\Controllers\hakaksesController;
-use App\Http\Controllers\jadwalController;
-use App\Http\Controllers\kategoriController;
-use App\Http\Controllers\kendaraanController;
 use App\Http\Controllers\logincontroller;
-use App\Http\Controllers\outletController;
-use App\Http\Controllers\pemesananController;
-use App\Http\Controllers\pengirimanController;
-use App\Http\Controllers\pengunaController;
 use App\Http\Controllers\registerController;
-use App\Http\Controllers\sopirController;
-use App\Http\Controllers\stokController;
-use App\Http\Controllers\trackController;
+
+use App\Http\Controllers\admin\admincontroller;
+use App\Http\Controllers\admin\gudangController;
+use App\Http\Controllers\admin\hakaksesController;
+use App\Http\Controllers\admin\jadwalController;
+use App\Http\Controllers\admin\kendaraanController;
+use App\Http\Controllers\admin\laporanController;
+use App\Http\Controllers\admin\outletController;
+use App\Http\Controllers\admin\pengunaController;
+use App\Http\Controllers\admin\sopirController;
+
+use App\Http\Controllers\gudang\dashboardGudang;
+use App\Http\Controllers\gudang\barangController;
+use App\Http\Controllers\Gudang\gudangLaporan;
+use App\Http\Controllers\gudang\pemesananController;
+use App\Http\Controllers\gudang\kategoriController;
+use App\Http\Controllers\gudang\stokController;
+use App\Http\Controllers\gudang\pengirimanController;
+use App\Http\Controllers\Pengguna\orderController;
+use App\Http\Controllers\Pengguna\dashboardPengguna;
+use App\Http\Controllers\Pengguna\outletpengguna;
+
+use App\Http\Controllers\Sopir\trackController;
+use App\Http\Controllers\Sopir\dashboardSopir;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Psy\CodeCleaner\ReturnTypePass;
@@ -32,61 +42,115 @@ use Psy\CodeCleaner\ReturnTypePass;
 */
 
 // route login
-Route::controller(logincontroller::class)->group(function () {
-    Route::get('/', 'index')->name('login');
-    Route::post('actionlogin', 'actionlogin')->name('actionlogin');
-    Route::get('actionlogout', 'actionlogout')->name('actionlogout');
-});
-
-// // controller admin
-// Route::group(['middleware' => ['auth,isLogin::admin']], function () {
-//     //
-// });
-// home
-Route::get('/admin/dashboard', [admincontroller::class, 'index'])->name('dashboardAdmin');
-
+Route::get('/', [logincontroller::class, 'index'])->name('login');
+Route::post('/', [logincontroller::class, 'actionlogin'])->name('actionlogin');
+Route::get('/logout', [logincontroller::class,  'actionlogout'])->name('actionlogout');
 // register
 Route::get('register', [registerController::class, 'register'])->name('register');
 Route::post('register/action', [registerController::class, 'actionregister'])->name('actionregister');
 
-// kendaraan
-Route::get('admin/kendaraan', [kendaraanController::class, 'index'])->name('kendarann');
 
-// jadwal
-Route::get('admin/jadwal', [jadwalController::class, 'index'])->name('jadwal');
+Route::group(['middleware' => ['isAdmin']], function () {
 
-// hak akses
-Route::get('admin/hakakses', [hakaksesController::class, 'index'])->name('hakakses');
-Route::post('admin/hakakses/actionTambah', [hakaksesController::class, 'actionTambah'])->name('actionTambahhakakases');
+    // home
+    Route::get('/admin/dashboard', [admincontroller::class, 'index'])->name('dashboardAdmin');
 
-// gudang
-Route::get('admin/gudang', [gudangController::class, 'index'])->name('gudang');
+    // kendaraan
+    Route::controller(kendaraanController::class)->group(function () {
+        route::get('/admin/kendaraan', 'index')->name('kendarann');
+        route::post('/admin/kendaraan/store', 'store')->name('kendaraanStore');
+        route::put('/admin/kendaraan/update', 'update')->name('KendaraanUpdate');
+        route::get('/admin/kendaraan/delete/{id}', 'destroy')->name('KendaraanDelete');
+    });
 
-// rute
-Route::get('admin/track', [trackController::class, 'index'])->name('track');
+    // jadwal
+    Route::controller(jadwalController::class)->group(function () {
+        route::get('/admin/jadwal', 'index')->name('jadwal');
+        route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
+        route::put('/admin/jadwal/update', 'update')->name('jadwalUpdate');
+        route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+    });
 
-// pengguna
-Route::get('admin/pengguna', [pengunaController::class, 'index'])->name('pengguna');
+    // hak akses
+    Route::controller(hakaksesController::class)->group(function () {
+        route::get('/admin/hakakses', 'index')->name('hakakses');
+        route::post('/admin/hakakses/Tambah', 'store')->name('hakaksesStore');
+        route::put('/admin/hakakses/update', 'update')->name('hakaksesupdate');
+        route::get('/admin/hakakses/delete/{id}', 'destroy')->name('hakaksesDelete');
+    });
 
-// sopir
-Route::get('admin/sopir', [sopirController::class, 'index'])->name('sopir');
+    // gudang
+    Route::controller(gudangController::class)->group(function () {
+        route::get('admin/gudang', 'index')->name('gudang');
+        route::post('admin/gudang/Tambah', 'store')->name('gudangStore');
+        route::put('/admin/gudang/update', 'update')->name('gudangupdate');
+        route::get('/admin/gudang/delete/{id}', 'destroy')->name('gudangDelete');
+    });
 
-// outlet
-Route::get('admin/outlet', [outletController::class, 'index'])->name('outlet');
+    // Laporan
+    Route::get('admin/Laporan/laporanbarang', [laporanController::class, 'laporanBarang'])->name('laporanBarang');
+    Route::get('admin/Laporan/laporanpenjualan', [laporanController::class, 'laporanpPenjualan'])->name('laporanpenjualan');
+    Route::get('admin/Laporan/laporanstok', [laporanController::class, 'laporanStok'])->name('laporanStok');
+    Route::get('admin/Laporan/laporanbrgmasuk', [laporanController::class, 'laporanBrgMasuk'])->name('laporanBrgMasuk');
 
-// pengiriman
-Route::get('admin/pengiriman', [pengirimanController::class, 'index'])->name('pengiriman');
+    // pengguna
+    Route::get('admin/pengguna', [pengunaController::class, 'index'])->name('pengguna');
 
-// pemesanan
-Route::get('admin/pesan', [pemesananController::class, 'index'])->name('pesan');
-Route::get('admin/pemesanan', [pemesananController::class, 'pemesanan'])->name('pemesanan');
+    // sopir
+    Route::get('admin/sopir', [sopirController::class, 'index'])->name('sopir');
 
+    // outlet
+    Route::get('admin/outlet', [outletController::class, 'index'])->name('outlet');
+});
 
-// Barang masuk
-Route::get('admin/brg_masuk', [stokController::class, 'index'])->name('brg_masuk');
+Route::group(['middleware' => ['isGudang']], function () {
 
-// kategori
-Route::get('admin/kategori', [kategoriController::class, 'index'])->name('kategori');
+    Route::get('gudang/dashboard', [dashboardGudang::class, 'index'])->name('gudangdashboard');
 
-// Barang
-Route::get('admin/Barang', [barangController::class, 'index'])->name('barang');
+    // Barang
+    Route::get('gudang/Barang', [barangController::class, 'index'])->name('barang');
+
+    // pemesanan
+    Route::get('gudang/pemesanan', [pemesananController::class, 'index'])->name('pesan');
+    Route::get('gudang/pemesanan/pemesanan', [pemesananController::class, 'pemesanan'])->name('pemesanan');
+
+    // kategori
+    Route::get('gudang/kategori', [kategoriController::class, 'index'])->name('kategori');
+
+    // Barang masuk
+    Route::get('gudang/brg_masuk', [stokController::class, 'index'])->name('brg_masuk');
+
+    // pengiriman
+    Route::get('gudang/pengiriman', [pengirimanController::class, 'index'])->name('pengiriman');
+
+    // rute
+    Route::get('admin/track', [trackController::class, 'index'])->name('track');
+
+    // Laporan
+    Route::get('gudang/Laporan/laporanbarang', [gudangLaporan::class, 'laporanBarang'])->name('laporanBarangGudang');
+    Route::get('gudang/Laporan/laporanpenjualan', [gudangLaporan::class, 'laporanpPenjualan'])->name('laporanpenjualanGudang');
+    Route::get('gudang/Laporan/laporanstok', [gudangLaporan::class, 'laporanStok'])->name('laporanStokGudang');
+    Route::get('gudang/Laporan/laporanbrgmasuk', [gudangLaporan::class, 'laporanBrgMasuk'])->name('laporanBrgMasukGudang');
+});
+
+Route::group(['middleware' => ['isPengguna']], function () {
+
+    Route::get('Pengguna/dashboard', [dashboardPengguna::class, 'index'])->name('penggunadashboard');
+
+    Route::get('Pengguna/pemesanan', [orderController::class, 'index'])->name('PesanBarang');
+    Route::get('Pengguna/pemesanan/order', [orderController::class, 'pemesanan'])->name('order');
+
+    Route::get('Pengguna/Pengiriman', [orderController::class, 'pengiriman'])->name('Pengiriman');
+
+    Route::get('Pengguna/Outlet', [outletpengguna::class, 'index'])->name('outletpengguna');
+
+    Route::get('Pengguna/History', [orderController::class, 'history'])->name('history');
+});
+
+Route::group(['middleware' => ['isSopir']], function () {
+
+    Route::get('Sopir/dashboard', [dashboardSopir::class, 'index'])->name('sopirdashboard');
+    Route::get('Sopir/Track', [trackController::class, 'index'])->name('TrackBaru');
+    Route::get('Sopir/HistorySopir', [dashboardSopir::class, 'history'])->name('historysopir');
+    Route::get('Sopir/Jdwal', [dashboardSopir::class, 'jadwal'])->name('jadwalsopir');
+});
