@@ -10,6 +10,7 @@
 </head>
 
 <body class="bg-gray-100">
+    @include('alert')
     <div class="h-screen flex items-center justify-center">
         <div class="w-full shadow-lg max-w-sm bg-white mx-4 p-8 lg:p-16 rounded-lg leading-normal">
             <div class="text-3xl  font-light uppercase mb-6 ">login</div>

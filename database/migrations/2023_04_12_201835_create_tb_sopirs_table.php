@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('tb_sopirs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->string('SIM');
+            $table->string('SIM')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('users');
         });

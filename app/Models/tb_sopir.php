@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class tb_sopir extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_user',
+        'SIM',
+        'status'
+    ];
 }

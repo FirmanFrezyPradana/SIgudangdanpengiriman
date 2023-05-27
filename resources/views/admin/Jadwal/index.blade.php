@@ -7,7 +7,6 @@
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                 + Jadwal
             </button>
-            <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i class="bi bi-filetype-pdf">PDF</i></button>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-gra-400 dark:text-white text-center">
                     <th scope="col" class="p-4">
@@ -51,7 +50,7 @@
                     <td class="px-6 py-4">
                         {{$jadwal->total_jarak_tempuh}}
                     </td>
-                    <td class="px-6 py-4"><i class="bi bi-pencil-square"></i>
+                    <td class="px-6 py-4">
                         <a href="#" data-modal-target="Update-modal{{$jadwal->id}}" data-modal-toggle="Update-modal{{$jadwal->id}}" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="bi bi-pencil-square"></i></a>
                         <a href="{{ route('jadwalDelete', ['id' => $jadwal->id ]) }}" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-trash3"></i></a>
                     </td>

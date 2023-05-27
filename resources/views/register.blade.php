@@ -42,6 +42,8 @@
                     <label for="password" class="text-lg mb-2 text-gray-300 block">Password</label>
                     <input type="password" name="password" placeholder="Password" id="" class="border p-2 rounded-lg w-full focus:border-blue-600 focus:outline-none">
                 </div>
+                <input type="hidden" name="status" value="belum verifikasi">
+                <input type="hidden" name="id_pegawai" value="3">
                 <button type="submit" class="py-2 px-3 bg-blue-500 rounded-lg text-white hover:bg-blue-600">Register</button>
             </form>
 

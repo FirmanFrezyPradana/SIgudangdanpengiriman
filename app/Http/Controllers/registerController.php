@@ -21,9 +21,11 @@ class registerController extends Controller
             'email' => 'required|unique:users',
             'username' => 'required',
             'password' => 'required|min:8',
+            'status' => 'required',
+            'id_pegawai' => 'required',
         ]);
         $validate['password'] = bcrypt($validate['password']);
         User::create($validate);
-        return redirect()->route('login');
+        return redirect()->route('login')->with([['success' => 'Pesan Berhasil']]);
     }
 }

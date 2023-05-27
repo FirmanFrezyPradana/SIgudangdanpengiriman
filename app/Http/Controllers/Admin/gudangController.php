@@ -13,11 +13,13 @@ class gudangController extends Controller
     {
         $this->middleware('isAdmin');
     }
-    public function index(`)
+
+    public function index()
     {
         $data_gudang = tb_gudang::all();
         return view('admin.gudang.index', ['data_gudang' => $data_gudang]);
     }
+    
     public function store(Request $request)
     {
         $gudangs = new tb_gudang([

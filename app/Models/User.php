@@ -24,9 +24,17 @@ class User extends Authenticatable
         'nama_pengguna',
         'username',
         'email',
+        'telepon_pengguna',
+        'alamat',
         'password',
         'id_pegawai',
+        'status',
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo(tb_pegawai::class, 'id_pegawai');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

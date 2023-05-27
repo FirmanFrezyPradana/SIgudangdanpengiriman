@@ -20,13 +20,13 @@ class jadwalController extends Controller
     }
     public function store(Request $request)
     {
-        $roles = new tb_jadwal([
+        $validate = new tb_jadwal([
             'sesi_pengiriman' => $request->sesi_pengiriman,
             'jam_berangkat' => $request->jam_berangkat,
             'tujuan' => $request->tujuan,
             'total_jarak_tempuh' => $request->total_jarak_tempuh,
         ]);
-        $roles->save();
+        $validate->save();
         return redirect()->route('jadwal');
     }
     public function destroy($id)

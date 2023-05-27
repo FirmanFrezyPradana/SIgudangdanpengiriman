@@ -84,4 +84,10 @@
     }
     dropdown();
     // end dopdown
+
+    $(document).ready(function() {
+        $("#search").on("keyup", function() {
+            alert('sekses');
+        });
+    });
 </script>

@@ -56,9 +56,6 @@
         </ul>
     </div>
 </aside>
-<!-- <a href="{{route('track')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-        <span class="flex-1 ml-3 whitespace-nowrap">Track</span>
-    </a> -->
 
 <div class="p-4 sm:ml-64 h-screen bg-white dark:bg-gray-700">
     <div class="mt-14">

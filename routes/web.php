@@ -13,16 +13,17 @@ use App\Http\Controllers\admin\outletController;
 use App\Http\Controllers\admin\pengunaController;
 use App\Http\Controllers\admin\sopirController;
 
+use App\Http\Controllers\gudang\brgMskController;
 use App\Http\Controllers\gudang\dashboardGudang;
 use App\Http\Controllers\gudang\barangController;
 use App\Http\Controllers\Gudang\gudangLaporan;
 use App\Http\Controllers\gudang\pemesananController;
 use App\Http\Controllers\gudang\kategoriController;
-use App\Http\Controllers\gudang\stokController;
 use App\Http\Controllers\gudang\pengirimanController;
+use App\Http\Controllers\Pengguna\CardController;
 use App\Http\Controllers\Pengguna\orderController;
 use App\Http\Controllers\Pengguna\dashboardPengguna;
-use App\Http\Controllers\Pengguna\outletpengguna;
+use App\Http\Controllers\Pengguna\outletPenguna;
 
 use App\Http\Controllers\Sopir\trackController;
 use App\Http\Controllers\Sopir\dashboardSopir;
@@ -95,12 +96,21 @@ Route::group(['middleware' => ['isAdmin']], function () {
 
     // pengguna
     Route::get('admin/pengguna', [pengunaController::class, 'index'])->name('pengguna');
+    Route::put('admin/pengguna', [pengunaController::class, 'updateStatus'])->name('updateStatus');
+    Route::post('admin/pengguna/tambah', [pengunaController::class, 'store'])->name('tambahpengguna');
+    Route::get('admin/pengguna/{id}', [pengunaController::class, 'destroy'])->name('destroypengguna');
 
     // sopir
-    Route::get('admin/sopir', [sopirController::class, 'index'])->name('sopir');
+    Route::controller(sopirController::class)->group(function () {
+        route::get('admin/sopir', 'index')->name('sopir');
+        route::post('admin/sopir/Tambah', 'store')->name('tambahSopir');
+        // route::put('/admin/gudang/update', 'update')->name('gudangupdate');
+        route::get('/admin/gudang/{id}', 'destroy')->name('DeleteDelete');
+    });
 
     // outlet
     Route::get('admin/outlet', [outletController::class, 'index'])->name('outlet');
+    Route::get('admin/outlet/{id}', [outletController::class, 'destroy'])->name('destroyOutlet');
 });
 
 Route::group(['middleware' => ['isGudang']], function () {
@@ -108,17 +118,34 @@ Route::group(['middleware' => ['isGudang']], function () {
     Route::get('gudang/dashboard', [dashboardGudang::class, 'index'])->name('gudangdashboard');
 
     // Barang
-    Route::get('gudang/Barang', [barangController::class, 'index'])->name('barang');
+    Route::controller(barangController::class)->group(function () {
+        route::get('/gudang/Barang', 'index')->name('barang');
+        route::post('/gudang/Barang/tambah', 'store')->name('storeBarang');
+        route::put('/gudang/Barang/update', 'update')->name('UpdateBarang');
+        route::get('/gudang/Barang/delete/{id}', 'destroy')->name('destroyBarang');
+    });
+    // Route::get('gudang/Barang', [barangController::class, 'index'])->name('barang');
 
     // pemesanan
     Route::get('gudang/pemesanan', [pemesananController::class, 'index'])->name('pesan');
     Route::get('gudang/pemesanan/pemesanan', [pemesananController::class, 'pemesanan'])->name('pemesanan');
 
     // kategori
-    Route::get('gudang/kategori', [kategoriController::class, 'index'])->name('kategori');
+    Route::controller(kategoriController::class)->group(function () {
+        route::get('/gudang/kategori', 'index')->name('kategori');
+        route::post('/gudang/kategori/tambah', 'store')->name('storeKategori');
+        route::put('/gudang/kategori/update', 'update')->name('KendaraanUpdate');
+        route::get('/gudang/kategori/delete/{id}', 'destroy')->name('KendaraanDestroy');
+    });
 
     // Barang masuk
-    Route::get('gudang/brg_masuk', [stokController::class, 'index'])->name('brg_masuk');
+    Route::controller(brgMskController::class)->group(function () {
+        route::get('/gudang/brg_Masuk', 'index')->name('brg_masuk');
+        route::post('/gudang/brg_Masuk/tambah', 'store')->name('storeBrgMasuk');
+        route::put('/gudang/brg_Masuk/update', 'update')->name('UpdateBrgMasuk');
+        route::get('/gudang/brg_Masuk/{id?}/{id_barang?}', 'destroy')->name('destroyBrgMasuk');
+        route::get('/gudang/brg_masuk', 'search');
+    });
 
     // pengiriman
     Route::get('gudang/pengiriman', [pengirimanController::class, 'index'])->name('pengiriman');
@@ -135,16 +162,28 @@ Route::group(['middleware' => ['isGudang']], function () {
 
 Route::group(['middleware' => ['isPengguna']], function () {
 
-    Route::get('Pengguna/dashboard', [dashboardPengguna::class, 'index'])->name('penggunadashboard');
+    Route::controller(dashboardPengguna::class)->group(function () {
+        route::get('/Pengguna/dashboard', 'index')->name('penggunadashboard');
+        // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
+        route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
+        // route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+    });
 
     Route::get('Pengguna/pemesanan', [orderController::class, 'index'])->name('PesanBarang');
-    Route::get('Pengguna/pemesanan/order', [orderController::class, 'pemesanan'])->name('order');
-
     Route::get('Pengguna/Pengiriman', [orderController::class, 'pengiriman'])->name('Pengiriman');
-
-    Route::get('Pengguna/Outlet', [outletpengguna::class, 'index'])->name('outletpengguna');
-
     Route::get('Pengguna/History', [orderController::class, 'history'])->name('history');
+
+    Route::controller(CardController::class)->group(function () {
+        route::get('/Pengguna/pemesanan/order', 'index')->name('Card');
+        Route::get('/Pengguna/pemesanan/order/cari', 'search')->name('search');
+        // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
+        // route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
+        // route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+    });
+
+
+    Route::get('Pengguna/Outlet', [outletPenguna::class, 'index'])->name('outletpengguna');
+    Route::post('Pengguna/Outlet', [outletPenguna::class, 'store'])->name('tambahoutletpengguna');
 });
 
 Route::group(['middleware' => ['isSopir']], function () {

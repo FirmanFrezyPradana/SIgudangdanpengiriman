@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_jadwals', function (Blueprint $table) {
             $table->id();
             $table->string('sesi_pengiriman');
-            $table->date('jam_berangkat');
+            $table->time('jam_berangkat');
             $table->text('tujuan');
             $table->string('total_jarak_tempuh');
             $table->timestamps();

@@ -22,29 +22,40 @@
                         Telepon
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Pemilik
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         action
                     </th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                $no=1;
+                @endphp
+                @foreach ( $data_outlet as $outlet )
                 <tr class="bg-white text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="w-4 p-4">
-                        1
+                        {{$no++}}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Gudang Lowaksari
+                        {{$outlet->nama_outlet}}
                     </th>
                     <td class="px-6 py-4">
-                        lowaksari no 245 jl kebangsaan timur
+                        {{$outlet->alamat}}
                     </td>
                     <td class="px-6 py-4">
-                        086745342353
+                        {{$outlet->telepon}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Edit</a>
-                        <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Hapus</a>
+                        {{$outlet->nama_pengguna}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{{ route('destroyOutlet', ['id' => $outlet->id ]) }}" class=" text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="bi bi-trash3"></i></a>
+                        <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-pencil-square"></i></a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

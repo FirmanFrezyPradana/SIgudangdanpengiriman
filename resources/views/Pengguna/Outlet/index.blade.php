@@ -27,24 +27,29 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                $no=1;
+                @endphp
+                @foreach ( $data_outlet as $outlet )
                 <tr class="bg-white text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="w-4 p-4">
-                        1
+                        {{$no++}}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Gudang Lowaksari
+                        {{ $outlet->nama_outlet}}
                     </th>
                     <td class="px-6 py-4">
-                        lowaksari no 245 jl kebangsaan timur
+                        {{ $outlet->alamat}}
                     </td>
                     <td class="px-6 py-4">
-                        086745342353
+                        {{ $outlet->telepon}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Edit</a>
+                        <a href="#" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="bi bi-pencil-square"></i></a>
                         <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Hapus</a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -63,10 +68,11 @@
             </button>
             <div class="px-6 py-6 lg:px-8">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Input Data Outlet</h3>
-                <form class="space-y-6" action="#">
+                <form class="space-y-6" action="{{route('tambahoutletpengguna')}}" method="post">
+                    @csrf
                     <div>
-                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Outlet</label>
-                        <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                        <label for="nama_outlet" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
+                        <input type="text" name="nama_outlet" id="nama_outlet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <div>
                         <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>

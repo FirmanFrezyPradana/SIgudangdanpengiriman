@@ -14,4 +14,7 @@ class tb_pegawai extends Model
     protected $fillable = [
         'hak_akses',
     ];
+    public function user(){
+        return $this->hasMany(User::class, 'id');
+    }
 }

@@ -17,9 +17,9 @@ class pengunaController extends Controller
     }
     public function index()
     {
-        $data_pegguna = DB::table('users')
-            ->join('tb_pegawais', 'tb_pegawais.id', '=', 'users.id_pegawai')
-            ->get();
+        $data_pegguna = User::all();
+        // ->join('tb_pegawais', 'tb_pegawais.id', '=', 'users.id_pegawai')
+        // ->get();
         $data_pegawai = tb_pegawai::all();
         $array = [
             'data_pengguna' => $data_pegguna,
@@ -27,8 +27,32 @@ class pengunaController extends Controller
         ];
         return view('admin.pengguna.index', $array);
     }
-    public function index2()
+    public function updateStatus(Request $request)
     {
+        //dd($request->id);
+        $id = $request->id;
+        User::where('id', $id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->route('pengguna')->with('message', 'Berhasil Update');
+    }
+    public function store(Request $request)
+    {
+        $validate = $request->validate([
+            'nama_pengguna' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'status' => '',
+            'id_pegawai' => 'required',
+        ]);
+        $validate['password'] = bcrypt($validate['password']);
+        User::create($validate);
+        return redirect()->route('pengguna');
+    }
 
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('pengguna')->with('message', 'Berhasil Dihapus');
     }
 }

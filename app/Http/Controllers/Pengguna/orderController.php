@@ -16,11 +16,7 @@ class orderController extends Controller
     {
         return view('pengguna.Pemesanan.index');
     }
-    public function pemesanan()
-    {
-        return view('pengguna.Pemesanan.pemesanan');
-    }
-    
+
     public function pengiriman()
     {
         return view('Pengguna.Pengiriman.index');
@@ -29,5 +25,4 @@ class orderController extends Controller
     {
         return view('Pengguna.History.index');
     }
-
 }
