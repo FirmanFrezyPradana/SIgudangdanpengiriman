@@ -20,6 +20,7 @@ use App\Http\Controllers\Gudang\gudangLaporan;
 use App\Http\Controllers\gudang\pemesananController;
 use App\Http\Controllers\gudang\kategoriController;
 use App\Http\Controllers\gudang\pengirimanController;
+
 use App\Http\Controllers\Pengguna\CardController;
 use App\Http\Controllers\Pengguna\orderController;
 use App\Http\Controllers\Pengguna\dashboardPengguna;
