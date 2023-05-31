@@ -150,6 +150,8 @@ Route::group(['middleware' => ['isGudang']], function () {
 
     // pengiriman
     Route::get('gudang/pengiriman', [pengirimanController::class, 'index'])->name('pengiriman');
+    Route::post('gudang/pengiriman', [pengirimanController::class, 'store'])->name('pengirimanBarang');
+
 
     // rute
     Route::get('admin/track', [trackController::class, 'index'])->name('track');
@@ -179,7 +181,7 @@ Route::group(['middleware' => ['isPengguna']], function () {
         Route::get('/Pengguna/pemesanan/order/cari', 'search')->name('search');
         // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
         // route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
-        // route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+        route::get('/Pengguna/pemesanan/order/{id}', 'destroy')->name('pesananDestroy');
     });
 
 

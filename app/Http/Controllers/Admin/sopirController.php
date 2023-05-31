@@ -20,9 +20,11 @@ class sopirController extends Controller
         $data_pegguna = DB::table('users')
             ->join('tb_sopirs', 'users.id', '=', 'tb_sopirs.id_user')
             ->get();
-        $data_pegguna2 = User::where('id_pegawai', '=', 4)
-            ->where('status', '=', 'Sudah Verifikasi')
+        $existingIds = tb_sopir::pluck('id_user')->all();
+        $data_pegguna2 = User::where('id_pegawai', 4)
+            ->whereNotIn('id', $existingIds)
             ->get();
+
         $array = [
             'data_pengguna' => $data_pegguna,
             'data_pengguna2' => $data_pegguna2,

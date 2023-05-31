@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('tb_pengiriman', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pemesanan');
+            $table->string('pemesanan_kode');
             $table->unsignedBigInteger('id_kendaraan');
             $table->unsignedBigInteger('id_jadwal');
             $table->unsignedBigInteger('id_sopir');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->foreign('id_pemesanan')->references('id')->on('tb_pemesanans');

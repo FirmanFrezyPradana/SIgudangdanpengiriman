@@ -22,7 +22,7 @@ class dashboardPengguna extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
+        // dd($request);$sopir
         User::find($request->id)->update([
             'nama_pengguna' => $request->nama_pengguna,
             'alamat' => $request->alamat,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_pemesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -139,5 +140,8 @@ class CardController extends Controller
     public function destroy($id)
     {
         //
+
+        tb_pemesanan::where('kode_pemesanan', $id)->delete();
+        return redirect()->route('PesanBarang')->with('message', 'Berhasil Dihapus');
     }
 }
