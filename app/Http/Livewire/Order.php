@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\tb_barang;
+use App\Models\tb_brgkeluar;
 use App\Models\tb_outlet;
 use App\Models\tb_pemesanan;
 use Illuminate\Support\Facades\Auth;
@@ -136,10 +137,12 @@ class Order extends Component
 
     public function store()
     {
+        $user = auth()->id();
         foreach ($this->keranjang as $items) {
             $barang = tb_barang::find($items['id']);
             tb_pemesanan::create([
                 'id_outlet' => $this->id_outlet,
+                'user_id' => $user,
                 'id_barang' => $items['id'],
                 'kode_pemesanan' => $this->KodePemesanan,
                 'jumlah_pesanan' => $items['qty'],
@@ -150,6 +153,21 @@ class Order extends Component
                 'status_pemesanan' => 'Belum Diproses',
             ]);
         }
+        foreach ($this->keranjang as $items) {
+            $barang = tb_barang::find($items['id']);
+            tb_brgkeluar::create([
+                'kode_invoice' => $this->KodePemesanan,
+                'id_barang' => $items['id'],
+                'stoke_keluar' => $items['qty'],
+                'tanggal_keluar' => $this->tangggal_pemesanan,
+            ]);
+            // $barang->stoke_akhir -= $items['qty']; // kurangi stok_akhir dengan jumlah sebelumnya
+            // $barang->stoke_masuk -= $brg_masuk->stoke_masuk; // kurangi stok_masuk dengan jumlah sebelumnya
+            $barang->stoke_keluar += $items['qty'];
+            $barang->stoke_akhir -= $items['qty'];
+            $barang->save();
+        }
+
         // Mengosongkan keranjang setelah pesanan dibuat
         $this->keranjang = [];
         $this->totalHarga = 0;

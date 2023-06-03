@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class tb_barang extends Model
 {
     use HasFactory;
+    protected $primarykey = 'id';
     protected $fillable = [
         'kode_barang',
         'nama_barang',
@@ -28,5 +29,10 @@ class tb_barang extends Model
     public function kategori()
     {
         return $this->belongsTo(tb_kategori::class, 'id_kategori');
+    }
+
+    public function brgmasuk()
+    {
+        return $this->hasMany(tb_brgmasuk::class, 'id_barang');
     }
 }

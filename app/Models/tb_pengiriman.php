@@ -17,4 +17,24 @@ class tb_pengiriman extends Model
         'id_sopir',
         'status',
     ];
+    // public function pemesanan()
+    // {
+    //     return $this->hbelongsTo(tb_pemesanan::class, 'pemesanan_kode', 'kode_pemesanan');
+    // }
+    public function kendaraan()
+    {
+        return $this->belongsTo(tb_kendaraan::class, 'id_kendaraan');
+    }
+    public function jadwal()
+    {
+        return $this->belongsTo(tb_jadwal::class, 'id_jadwal');
+    }
+    public function sopir()
+    {
+        return $this->belongsTo(tb_sopir::class, 'id_sopir');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

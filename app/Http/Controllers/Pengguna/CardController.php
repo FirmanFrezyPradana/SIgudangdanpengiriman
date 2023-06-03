@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_barang;
+use App\Models\tb_brgkeluar;
 use App\Models\tb_pemesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -140,7 +142,14 @@ class CardController extends Controller
     public function destroy($id)
     {
         //
-
+        $brgkeluar = tb_brgkeluar::where('kode_invoice', $id)->get();
+        foreach ($brgkeluar as $psn) {
+            $barang = tb_barang::find($psn['id_barang']);
+            $barang->stoke_keluar -= $psn['stoke_keluar'];
+            $barang->stoke_akhir += $psn['stoke_keluar'];
+            $barang->save();
+            tb_brgkeluar::where('kode_invoice', $id)->delete();
+        }
         tb_pemesanan::where('kode_pemesanan', $id)->delete();
         return redirect()->route('PesanBarang')->with('message', 'Berhasil Dihapus');
     }

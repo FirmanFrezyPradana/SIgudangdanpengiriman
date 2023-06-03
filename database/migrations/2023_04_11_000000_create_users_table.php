@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama_pengguna');
             $table->text('alamat')->nullable();
             $table->string('telepon_pengguna')->nullable();
-            $table->string('username');
+            $table->string('username')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('id_pegawai')->nullable();
             $table->string('status')->nullable();

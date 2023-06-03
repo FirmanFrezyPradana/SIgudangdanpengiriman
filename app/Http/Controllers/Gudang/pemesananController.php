@@ -23,10 +23,10 @@ class pemesananController extends Controller
             ->distinct()
             ->where('status_pemesanan', 'Belum Diproses')
             ->get();
-        // dd($data_pemesanan);
         $data_kendaraan = tb_kendaraan::all();
         $data_jadwal = tb_jadwal::all();
         $data_sopir = tb_sopir::all();
+
         $array = [
             'data_pemesanan' => $data_pemesanan,
             'data_kendaraan' => $data_kendaraan,

@@ -38,8 +38,12 @@ class barangController extends Controller
             'satuan' => 'required',
             'harga' => 'required',
             'stoke_awal' => 'required',
+            'stoke_masuk' => 'required',
+            'stoke_keluar' => 'required',
         ]);
         $validate['stoke_akhir'] = $validate['stoke_awal'];
+        $validate['stoke_masuk'] = "0";
+        $validate['stoke_keluar'] = "0";
         tb_barang::create($validate);
         return redirect()->route('barang');
     }

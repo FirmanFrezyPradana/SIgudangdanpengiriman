@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Sopir;
 
 use App\Http\Controllers\Controller;
 use App\Models\tb_jadwal;
+use App\Models\tb_pengiriman;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardSopir extends Controller
 {
@@ -22,7 +24,11 @@ class dashboardSopir extends Controller
     }
     public function history()
     {
-        return view('Sopir.History.index');
+        $user = auth()->id();
+        $data_pengiriman_selesai = tb_pengiriman::where('status', 'Pesanan selesai')
+            ->orWhere('id_sopir', $user)
+            ->get();
+        return view('Sopir.History.index', ['data_pengiriman_selesai' => $data_pengiriman_selesai]);
     }
     public function jadwal()
     {

@@ -9,7 +9,7 @@
                     + Order
                 </button>
             </a>
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
                 <tr class="text-gra-400 dark:text-white">
                     <th scope="col" class="px-6 py-3">
                         Kode Pemesanan
@@ -30,12 +30,12 @@
             </thead>
             <tbody>
                 @foreach ($data_pemesanan as $pesanan )
-                <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pesanan->kode_pemesanan}}
                     </td>
                     <th scope="px-6 py-4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pesanan->id_outlet}}
+                        {{$pesanan->nama_outlet}}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pesanan->tanggal_pemesanan}}
@@ -43,9 +43,16 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pesanan->status_pemesanan}}
                     </th>
+                    @if ($pesanan->status_pemesanan == 'Diproses Gudang')
+                    <td class="px-6 py-4">
+                        <i class="bi bi-trash-fill"></i>
+                    </td>
+                    @else
                     <td class="px-6 py-4">
                         <a href="{{ route('pesananDestroy', ['id' => $pesanan->kode_pemesanan ]) }}" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="bi bi-trash-fill"></i></a>
                     </td>
+                    @endif
+
                 </tr>
                 @endforeach
             </tbody>

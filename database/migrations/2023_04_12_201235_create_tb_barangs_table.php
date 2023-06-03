@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('satuan');
             $table->integer('harga');
             $table->integer('stoke_awal');
-            $table->integer('stoke_masuk');
-            $table->integer('stoke_keluar');
-            $table->integer('stoke_akhir');
+            $table->integer('stoke_masuk')->nullable();
+            $table->integer('stoke_keluar')->nullable();
+            $table->integer('stoke_akhir')->nullable();
             $table->timestamps();
             // relasi
             $table->foreign('id_gudang')->references('id')->on('tb_gudangs');

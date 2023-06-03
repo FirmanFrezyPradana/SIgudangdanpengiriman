@@ -18,4 +18,8 @@ class tb_sopir extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+    public function loginData()
+    {
+        return $this->hasOne(User::class, 'id_user');
+    }
 }

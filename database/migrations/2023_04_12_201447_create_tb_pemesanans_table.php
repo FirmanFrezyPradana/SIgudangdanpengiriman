@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_pemesanans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('id_outlet');
             $table->unsignedBigInteger('id_barang');
             $table->string('kode_pemesanan');
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->integer('total_harga');
             $table->integer('total_pemesanan');
             $table->date('tanggal_pemesanan');
-            $table->string('status_pemesanan');
+            $table->string('status_pemesanan')->nullable();
             $table->timestamps();
             $table->foreign('id_outlet')->references('id')->on('tb_outlets');
             $table->foreign('id_barang')->references('id')->on('tb_barangs');

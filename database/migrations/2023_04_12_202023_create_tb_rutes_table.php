@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tb_rutes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pengiriman');
-            $table->date('date');
-            $table->string('track_rute');
+            $table->string('kode_invoice')->nullable();
+            $table->dateTime('tanggal_waktu')->nullable();
+            $table->string('track_rute')->nullable();
             $table->timestamps();
             $table->foreign('id_pengiriman')->references('id')->on('tb_pengiriman');
         });

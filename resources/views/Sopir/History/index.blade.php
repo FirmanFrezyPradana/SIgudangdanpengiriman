@@ -10,31 +10,25 @@
                         Kode Invoice
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Tanggal Pemesanan
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Status
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                @foreach ( $data_pengiriman_selesai as $pengiriman )
+                <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{$pengiriman->pemesanan_kode}}
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        INV-20230617-01
+                        @if ($pengiriman->status == 'Pesanan Diproses')
+                        <i class="bi bi-truck px-3 py-2 text-xl font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 "></i>
+                        @else
+                        <i class="bi bi-check2-circle px-3 py-2 text-xl font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"></i>
+                        @endif
                     </th>
-                    <td class="px-6 py-4">
-                        20-06-2023
-                    </td>
-                    <td class="px-6 py-4">
-                        Selesai
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-filetype-pdf"></i></a>
-                    </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">

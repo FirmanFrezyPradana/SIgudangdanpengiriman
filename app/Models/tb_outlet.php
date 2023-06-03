@@ -17,4 +17,9 @@ class tb_outlet extends Model
         'telepon',
         'id_user',
     ];
+
+    public function pemesanan()
+    {
+        return $this->hasMany(tb_pemesanan::class, 'id');
+    }
 }

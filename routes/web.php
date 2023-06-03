@@ -156,6 +156,7 @@ Route::group(['middleware' => ['isGudang']], function () {
     // rute
     Route::get('admin/track', [trackController::class, 'index'])->name('track');
 
+
     // Laporan
     Route::get('gudang/Laporan/laporanbarang', [gudangLaporan::class, 'laporanBarang'])->name('laporanBarangGudang');
     Route::get('gudang/Laporan/laporanpenjualan', [gudangLaporan::class, 'laporanpPenjualan'])->name('laporanpenjualanGudang');
@@ -170,14 +171,21 @@ Route::group(['middleware' => ['isPengguna']], function () {
         // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
         route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
         // route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+        Route::post('/Pengguna/dashboard', 'cari')->name('search_pengiriman');
+    });
+    Route::controller(orderController::class)->group(function () {
+        route::get('/Pengguna/pemesanan', 'index')->name('PesanBarang');
+        route::get('/Pengguna/Pengiriman', 'pengiriman')->name('Pengiriman');
+        route::get('/Pengguna/History', 'history')->name('history');
+
+        // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
+        route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
+        // route::get('/admin/jadwal/delete/{id}', 'destroy')->name('jadwalDelete');
+        Route::post('/Pengguna/dashboard', 'cari')->name('search_pengiriman');
     });
 
-    Route::get('Pengguna/pemesanan', [orderController::class, 'index'])->name('PesanBarang');
-    Route::get('Pengguna/Pengiriman', [orderController::class, 'pengiriman'])->name('Pengiriman');
-    Route::get('Pengguna/History', [orderController::class, 'history'])->name('history');
-
     Route::controller(CardController::class)->group(function () {
-        route::get('/Pengguna/pemesanan/order', 'index')->name('Card');
+        Route::get('/Pengguna/pemesanan/order', 'index')->name('Card');
         Route::get('/Pengguna/pemesanan/order/cari', 'search')->name('search');
         // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
         // route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
@@ -192,7 +200,11 @@ Route::group(['middleware' => ['isPengguna']], function () {
 Route::group(['middleware' => ['isSopir']], function () {
 
     Route::get('Sopir/dashboard', [dashboardSopir::class, 'index'])->name('sopirdashboard');
+
     Route::get('Sopir/Track', [trackController::class, 'index'])->name('TrackBaru');
+    Route::post('admin/track', [trackController::class, 'store'])->name('trackStore');
+
     Route::get('Sopir/HistorySopir', [dashboardSopir::class, 'history'])->name('historysopir');
+
     Route::get('Sopir/Jdwal', [dashboardSopir::class, 'jadwal'])->name('jadwalsopir');
 });

@@ -39,23 +39,28 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                $no = 1;
+                @endphp
+                @foreach ($data_brgmsk as $brgmsk )
                 <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        12-04-2023
+                        {{$brgmsk->tanggal_masuk}}
                     </th>
                     <td class="px-6 py-4">
-                        MSK-403940824
+                        {{$brgmsk->kode_masuk}}
                     </td>
                     <td class="px-6 py-4">
-                        BRG-K44-VANBEL
+                        {{$brgmsk->barang->kode_barang}}
                     </td>
                     <td class="px-6 py-4">
-                        VANBEL
+                        {{$brgmsk->barang->nama_barang}}
                     </td>
                     <td class="px-6 py-4">
-                        40
+                        {{$brgmsk->stoke_masuk}}
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">

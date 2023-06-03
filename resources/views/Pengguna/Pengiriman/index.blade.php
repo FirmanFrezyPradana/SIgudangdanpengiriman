@@ -24,9 +24,10 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ( $data_pengiriman as $pengiriman)
                 <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        INV-20230617-01
+                        {{$pengiriman->pemesanan_kode}}
                     </th>
                     <td class="px-6 py-4">
                         Truk Bok
@@ -41,6 +42,7 @@
                         Sedang dalam perjalanan
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">

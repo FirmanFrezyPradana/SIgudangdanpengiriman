@@ -100,12 +100,12 @@ class brgMskController extends Controller
             'stoke_masuk' => 'required',
             'tanggal_masuk' => 'required',
         ]);
-
         $barang = tb_barang::find($validate['id_barang']);
         $brg_masuk = tb_brgmasuk::find($validate['id']);
 
         $barang->stoke_masuk -= $brg_masuk->stoke_masuk; // kurangi stok_masuk dengan jumlah sebelumnya
         $barang->stoke_akhir -= $brg_masuk->stoke_masuk; // kurangi stok_akhir dengan jumlah sebelumnya
+
         $barang->stoke_masuk += $request->stoke_masuk; // tambahkan stok_masuk dengan jumlah baru
         $barang->stoke_akhir += $request->stoke_masuk; // tambahkan stok_akhir dengan jumlah baru
         $barang->save();

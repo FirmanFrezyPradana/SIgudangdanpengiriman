@@ -24,23 +24,30 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ( $data_pengiriman as $pengiriman )
                 <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        SUB-20230427-1
+                        {{$pengiriman->pemesanan_kode}}
                     </td>
                     <th scope="px-6 py-4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Mobil Box
+                        {{$pengiriman->kendaraan->jenis_kendaraan}}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        sesi 3
+                        {{$pengiriman->jadwal->sesi_pengiriman }}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Firman
+                        {{$pengiriman->sopir->user->nama_pengguna}}
                     </th>
                     <td class="px-6 py-4">
-                        sedang dikirim
+                        {{$pengiriman->status}}
                     </td>
                 </tr>
+                @empty
+                <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white" colspan="7">Tidak Ada pPengiriman</td>
+                </tr>
+                @endforelse
+
             </tbody>
         </table>
     </div>

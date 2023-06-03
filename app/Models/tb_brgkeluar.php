@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tb_rute extends Model
+class tb_brgkeluar extends Model
 {
     use HasFactory;
-    protected $table = "tb_rutes";
+    protected $table = "dashboard_gudangs";
     protected $primarykey = "id";
+
     protected $fillable = [
         'kode_invoice',
-        'tanggal_waktu',
-        'track_rute',
+        'id_barang',
+        'stoke_keluar',
+        'tanggal_keluar',
     ];
 }

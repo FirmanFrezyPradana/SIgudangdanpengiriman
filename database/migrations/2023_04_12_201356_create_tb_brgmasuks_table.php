@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_brgmasuks', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_masuk');
+            $table->string('kode_masuk')->nullable();
             $table->unsignedBigInteger('id_barang');
             $table->integer('stoke_masuk');
             $table->date('tanggal_masuk');

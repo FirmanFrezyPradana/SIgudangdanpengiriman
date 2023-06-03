@@ -7,31 +7,31 @@
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pegawai Gudang</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p class="mb-3 text-center font-bold text-5xl text-gray-700 dark:text-gray-400">{{$pegawai_gudang}}</p>
             </div>
             <div class="p-4 mx-4 bg-white w-border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pegawai Sopir</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p class="mb-3 text-center font-bold text-5xl text-gray-700 dark:text-gray-400">{{$pegawai_sopir}}</p>
             </div>
             <div class="p-4 mx-4 bg-white w-border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Outlet</h5>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pelanggan</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p class="mb-3 text-center font-bold text-5xl text-gray-700 dark:text-gray-400">{{$pemilik_outlet}}</p>
             </div>
             <div class="p-4 mx-4 bg-white w-border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gudang</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p class="mb-3 text-center font-bold text-5xl text-gray-700 dark:text-gray-400">{{$gudang}}</p>
             </div>
             <div class="p-4 mx-4 bg-white w-border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Outlet</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p class="mb-3 text-center font-bold text-5xl text-gray-700 dark:text-gray-400">{{$outlet}}</p>
             </div>
             <div class="p-4 mx-4 bg-white w-border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">

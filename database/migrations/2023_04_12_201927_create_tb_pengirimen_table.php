@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('tb_pengiriman', function (Blueprint $table) {
             $table->id();
-            $table->string('pemesanan_kode');
-            $table->unsignedBigInteger('id_kendaraan');
-            $table->unsignedBigInteger('id_jadwal');
-            $table->unsignedBigInteger('id_sopir');
+            $table->string('pemesanan_kode')->nullable();
+            $table->unsignedBigInteger('id_kendaraan')->nullable();
+            $table->unsignedBigInteger('id_jadwal')->nullable();
+            $table->unsignedBigInteger('id_sopir')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
 

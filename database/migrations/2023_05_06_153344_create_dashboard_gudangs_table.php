@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('dashboard_gudangs', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_invoice');
+            $table->unsignedBigInteger('id_barang');
+            $table->unsignedBigInteger('stoke_keluar');
+            $table->date('tanggal_keluar');
             $table->timestamps();
         });
     }

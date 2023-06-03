@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_rute;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -22,7 +23,6 @@ class dashboardPengguna extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);$sopir
         User::find($request->id)->update([
             'nama_pengguna' => $request->nama_pengguna,
             'alamat' => $request->alamat,
@@ -32,5 +32,10 @@ class dashboardPengguna extends Controller
             'password' => bcrypt($request->password)
         ]);
         return redirect()->route('penggunadashboard')->with('message', 'Berhasil Update');
+    }
+    public function cari(Request $request)
+    {
+        $results = tb_rute::where('kode_invoice', 'like', '%' . $request->kode_pengiriman . '%')->get();
+        return view('penggunadashboard', ['results' => $results]);
     }
 }

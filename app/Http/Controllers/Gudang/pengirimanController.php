@@ -18,11 +18,14 @@ class pengirimanController extends Controller
     }
     public function index()
     {
-        return view('gudang.pengiriman.index');
+        $data_pengiriman = tb_pengiriman::all();
+
+        return view('gudang.pengiriman.index', ['data_pengiriman' => $data_pengiriman]);
     }
 
     public function store(Request $request)
     {
+        
         $gudangs = new tb_pengiriman([
             'pemesanan_kode' => $request->pemesanan_kode,
             'id_kendaraan' => $request->id_kendaraan,
@@ -30,11 +33,11 @@ class pengirimanController extends Controller
             'id_sopir' => $request->id_sopir,
             'status' => $request->status,
         ]);
-        tb_pemesanan::where('kode_pemesanan',  $gudangs->pemesanan_kode)
+        // dd($gudangs);
+        tb_pemesanan::where('kode_pemesanan',  $request->pemesanan_kode)
             ->update([
                 'status_pemesanan' => "Diproses Gudang",
             ]);
-        // dd($gudangs);
         $gudangs->save();
         return redirect()->route('pengiriman');
     }

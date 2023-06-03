@@ -14,6 +14,7 @@ class tb_pemesanan extends Model
 
     protected $fillable = [
         'id_outlet',
+        'user_id',
         'id_barang',
         'kode_pemesanan',
         'jumlah_pesanan',
@@ -23,10 +24,16 @@ class tb_pemesanan extends Model
         'tanggal_pemesanan',
         'status_pemesanan',
     ];
+    // public function pengiriman()
+    // {
+    //     return $this->hasMany(tb_pengiriman::class, 'kode_pemesanan', 'pemesanan_kode');
+    // }
+
     public function outlet()
     {
-        return $this->hasMany(tb_outlet::class, 'id_outlet');
+        return $this->belongsTo(tb_outlet::class, 'id_outlet');
     }
+
     public function barang()
     {
         return $this->hasMany(tb_barang::class, 'id_barang');
