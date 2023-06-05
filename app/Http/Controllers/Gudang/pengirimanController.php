@@ -18,14 +18,13 @@ class pengirimanController extends Controller
     }
     public function index()
     {
-        $data_pengiriman = tb_pengiriman::all();
-
+        $data_pengiriman = tb_pengiriman::with('kendaraan')->get();
         return view('gudang.pengiriman.index', ['data_pengiriman' => $data_pengiriman]);
     }
 
     public function store(Request $request)
     {
-        
+
         $gudangs = new tb_pengiriman([
             'pemesanan_kode' => $request->pemesanan_kode,
             'id_kendaraan' => $request->id_kendaraan,

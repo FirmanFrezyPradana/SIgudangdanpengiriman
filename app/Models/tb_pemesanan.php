@@ -24,10 +24,10 @@ class tb_pemesanan extends Model
         'tanggal_pemesanan',
         'status_pemesanan',
     ];
-    // public function pengiriman()
-    // {
-    //     return $this->hasMany(tb_pengiriman::class, 'kode_pemesanan', 'pemesanan_kode');
-    // }
+    public function pengiriman()
+    {
+        return $this->hasMany(tb_pengiriman::class, 'pemesanan_kode', 'kode_pemesanan');
+    }
 
     public function outlet()
     {

@@ -40,7 +40,6 @@ class kendaraanController extends Controller
             'jenis_kendaraan' => $request->jenis_kendaraan,
             'jenis_bbm' => $request->jenis_bbm,
         ]);
-
         return redirect()->route('kendarann')->with('message', 'Berhasil Update');
     }
 }

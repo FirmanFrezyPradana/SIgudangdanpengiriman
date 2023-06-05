@@ -17,4 +17,8 @@ class tb_jadwal extends Model
         'tujuan',
         'total_jarak_tempuh',
     ];
+
+    public function pengiriman(){
+        return $this->hasMany(tb_pengiriman::class);
+    }
 }

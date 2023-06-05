@@ -22,6 +22,7 @@ class brgMskController extends Controller
     {
         $data_barangMasuk = tb_brgmasuk::all();
         $data_barang = tb_barang::all();
+
         $array = [
             'data_barangMasuk' => $data_barangMasuk,
             'data_barang' => $data_barang,

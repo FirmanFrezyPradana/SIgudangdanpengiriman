@@ -37,10 +37,11 @@ class barangController extends Controller
             'id_kategori' => 'required',
             'satuan' => 'required',
             'harga' => 'required',
-            'stoke_awal' => 'required',
-            'stoke_masuk' => 'required',
-            'stoke_keluar' => 'required',
+            'stoke_awal' => '',
+            'stoke_masuk' => '',
+            'stoke_keluar' => '',
         ]);
+
         $validate['stoke_akhir'] = $validate['stoke_awal'];
         $validate['stoke_masuk'] = "0";
         $validate['stoke_keluar'] = "0";

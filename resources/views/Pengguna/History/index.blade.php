@@ -21,20 +21,22 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ( $rute as $r)
                 <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        INV-20230617-01
+                        {{$r->kode_invoice}}
                     </th>
                     <td class="px-6 py-4">
-                        20-06-2023
+                        {{$r->tanggal_waktu}}
                     </td>
                     <td class="px-6 py-4">
-                        Selesai
+                        {{$r->track_rute}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-filetype-pdf"></i></a>
+                        <a href="{{ route('inv_history', ['id' => $r->kode_invoice ]) }}" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-filetype-pdf"></i></a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">

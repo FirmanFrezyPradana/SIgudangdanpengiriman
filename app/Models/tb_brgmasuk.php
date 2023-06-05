@@ -18,6 +18,6 @@ class tb_brgmasuk extends Model
 
     public function barang()
     {
-        return $this->belongsTo(tb_barang::class, 'id');
+        return $this->belongsTo(tb_barang::class);
     }
 }

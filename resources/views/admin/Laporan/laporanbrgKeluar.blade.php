@@ -1,10 +1,12 @@
-@extends('gudang.navbar')
+@extends('admin.navbar')
 @section('container')
 @vite(['resources/css/app.css','resources/js/app.js'])
 <div class="w-full p-4 ">
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="p-4">
-            <a href="{{route('cetakBrgMasukpdfgudang')}}" target="_blank">
+            <!-- <button type="button" class=" focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><i class="bi bi-file-excel-fill">Exel</i></button> -->
+            <a href="{{route('cetakBrgkeluarpdf')}}" target="_blank">
                 <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i class="bi bi-filetype-pdf">PDF</i></button>
             </a>
         </div>
@@ -12,42 +14,36 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-center">
                     <th scope="col" class="px-6 py-3">
-                        Tanggal
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Kode Invoice Masuk
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Kode Barang
+                        No
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Nama Barang
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Jumlah
+                        Stok Keluar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @php
-                $no = 1;
+                $no=1;
                 @endphp
-                @foreach ($data_brgmsk as $brgmsk )
+                @foreach ( $data_brgkeluar as $brgkeluar )
                 <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$brgmsk->tanggal_masuk}}
+                        {{$no++}}
                     </th>
                     <td class="px-6 py-4">
-                        {{$brgmsk->kode_masuk}}
+                        {{$brgkeluar->nama_barang}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$brgmsk->barang->kode_barang}}
+                        {{$brgkeluar->total}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$brgmsk->barang->nama_barang}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{$brgmsk->stoke_masuk}}
+                        {{$brgkeluar->tanggal_keluar}}
                     </td>
                 </tr>
                 @endforeach

@@ -17,4 +17,9 @@ class tb_brgkeluar extends Model
         'stoke_keluar',
         'tanggal_keluar',
     ];
+
+    public function barang()
+    {
+        return $this->belongsTo(tb_barang::class, 'id_barang');
+    }
 }

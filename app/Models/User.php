@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->belongsTo(tb_pegawai::class, 'id_pegawai');
     }
 
+    public function sopir()
+    {
+        return $this->hasOne(tb_sopir::class, 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

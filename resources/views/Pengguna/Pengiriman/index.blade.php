@@ -25,25 +25,27 @@
             </thead>
             <tbody>
                 @foreach ( $data_pengiriman as $pengiriman)
-                <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pengiriman->pemesanan_kode}}
-                    </th>
-                    <td class="px-6 py-4">
-                        Truk Bok
-                    </td>
-                    <td class="px-6 py-4">
-                        08.40
-                    </td>
-                    <td class="px-6 py-4">
-                        Firman
-                    </td>
-                    <td class="px-6 py-4">
-                        Sedang dalam perjalanan
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
+                    @if ( $pengiriman->pemesanan->user_id == Auth()->user()->id)
+                    <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $pengiriman->pemesanan_kode }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{$pengiriman->kendaraan->nomor_polisi}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$pengiriman->jadwal->jam_berangkat}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$pengiriman->sopir->user->nama_pengguna}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$pengiriman->status}}
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span class="font-semibold text-gray-900 dark:text-white">1000</span></span>

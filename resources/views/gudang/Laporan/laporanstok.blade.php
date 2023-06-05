@@ -4,19 +4,9 @@
 <div class="w-full p-4 ">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="p-4">
-            <form action="" class="flex">
-                <div class="relative z-0 w-36 mb-6 group mr-4">
-                    <label for="">Tanggal Mulai</label>
-                    <input type="date" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                </div>
-                <div class="relative z-0 w-36 mb-6 group">
-                    <label for="">Tanggal Akhir</label>
-                    <input type="date" name="floating_company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                </div>
-                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm m-6 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Filter</button>
-            </form>
-            <button type="button" class=" focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><i class="bi bi-file-excel-fill">Exel</i></button>
-            <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i class="bi bi-filetype-pdf">PDF</i></button>
+            <a href="{{route('cetakStokpdfgudang')}}" target="_blank">
+                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i class="bi bi-filetype-pdf">PDF</i></button>
+            </a>
         </div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -53,34 +43,39 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                $no=1
+                @endphp
+                @foreach ($data_stok as $stok)
                 <tr class=" bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        {{$no++}}
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{$stok->kode_barang}}
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{$stok->nama_barang}}
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        {{$stok->stoke_awal}}
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{$stok->harga}}
                     </td>
                     <td class="px-6 py-4">
                         <table class="w-full text-sm text-gray-500">
                             <tr>
-                                <th>6</th>
-                                <th>7</th>
+                                <th>{{$stok->stoke_masuk}}</th>
+                                <th>{{$stok->stoke_keluar}}</th>
                             </tr>
                         </table>
                     </td>
                     <td class="px-6 py-4">
-                        20
+                        {{$stok->stoke_akhir}}
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <nav class=" p-4 flex items-center justify-between pt-4" aria-label="Table navigation">

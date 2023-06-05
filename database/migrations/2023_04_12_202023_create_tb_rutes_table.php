@@ -19,7 +19,6 @@ return new class extends Migration
             $table->dateTime('tanggal_waktu')->nullable();
             $table->string('track_rute')->nullable();
             $table->timestamps();
-            $table->foreign('id_pengiriman')->references('id')->on('tb_pengiriman');
         });
     }
 

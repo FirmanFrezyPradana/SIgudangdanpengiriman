@@ -26,6 +26,7 @@ class tb_barang extends Model
     {
         return $this->belongsTo(tb_gudang::class, 'id_gudang');
     }
+    
     public function kategori()
     {
         return $this->belongsTo(tb_kategori::class, 'id_kategori');
@@ -33,6 +34,11 @@ class tb_barang extends Model
 
     public function brgmasuk()
     {
-        return $this->hasMany(tb_brgmasuk::class, 'id_barang');
+        return $this->hasMany(tb_brgmasuk::class);
+    }
+
+    public function brgkeluar()
+    {
+        return $this->hasMany(tb_brgkeluar::class, 'id_barang', 'id');
     }
 }

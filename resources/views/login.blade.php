@@ -14,7 +14,7 @@
     <div class="h-screen flex items-center justify-center">
         <div class="w-full shadow-lg max-w-sm bg-white mx-4 p-8 lg:p-16 rounded-lg leading-normal">
             <div class="text-3xl  font-light uppercase mb-6 ">login</div>
-            <form action="{{ route('actionlogin') }}" method="post">
+            <form action="{{ route('actionlogin') }}" method="post" autocomplete="off">
                 @csrf
                 <div class="mb-5">
                     <label for="" class="text-sm mb-2 text-gray-300 block">Email</label>

@@ -18,10 +18,16 @@ class pemesananController extends Controller
     }
     public function index()
     {
-        $data_pemesanan = DB::table('tb_pemesanans')
-            ->select('kode_pemesanan', 'id_outlet', 'tanggal_pemesanan', 'status_pemesanan')
+        // $data_pemesanan = DB::table('tb_pemesanans')
+        //     ->select('kode_pemesanan', 'id_outlet', 'tanggal_pemesanan', 'status_pemesanan')
+        //     ->distinct()
+        //     ->where('status_pemesanan', 'Belum Diproses')
+        //     ->get();
+        $data_pemesanan = DB::table('tb_outlets')
+            ->join('tb_pemesanans', 'tb_outlets.id', '=', 'tb_pemesanans.id_outlet')
+            ->where('tb_pemesanans.status_pemesanan', '=', 'Belum Diproses')
+            ->select('tb_pemesanans.kode_pemesanan', 'tb_outlets.nama_outlet', 'tb_pemesanans.tanggal_pemesanan', 'tb_pemesanans.status_pemesanan')
             ->distinct()
-            ->where('status_pemesanan', 'Belum Diproses')
             ->get();
         $data_kendaraan = tb_kendaraan::all();
         $data_jadwal = tb_jadwal::all();

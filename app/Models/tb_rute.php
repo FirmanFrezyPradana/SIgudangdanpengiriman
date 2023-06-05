@@ -15,4 +15,9 @@ class tb_rute extends Model
         'tanggal_waktu',
         'track_rute',
     ];
+
+    // public function pengiriman()
+    // {
+    //     return $this->belongsTo(tb_pengiriman::class, 'kode_invoice');
+    // }
 }

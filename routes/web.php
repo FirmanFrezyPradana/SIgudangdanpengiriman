@@ -55,13 +55,16 @@ Route::post('register/action', [registerController::class, 'actionregister'])->n
 Route::group(['middleware' => ['isAdmin']], function () {
 
     // home
-    Route::get('/admin/dashboard', [admincontroller::class, 'index'])->name('dashboardAdmin');
+    Route::controller(admincontroller::class)->group(function () {
+        Route::get('/admin/dashboard', 'index')->name('dashboardAdmin');
+        Route::post('/admin/dashboard', 'trackRute')->name('trackRute');
+    });
 
     // kendaraan
     Route::controller(kendaraanController::class)->group(function () {
         route::get('/admin/kendaraan', 'index')->name('kendarann');
         route::post('/admin/kendaraan/store', 'store')->name('kendaraanStore');
-        route::put('/admin/kendaraan/update', 'update')->name('KendaraanUpdate');
+        route::put('/admin/kendaraan/Update', 'update')->name('updateKendaraan');
         route::get('/admin/kendaraan/delete/{id}', 'destroy')->name('KendaraanDelete');
     });
 
@@ -90,16 +93,29 @@ Route::group(['middleware' => ['isAdmin']], function () {
     });
 
     // Laporan
-    Route::get('admin/Laporan/laporanbarang', [laporanController::class, 'laporanBarang'])->name('laporanBarang');
-    Route::get('admin/Laporan/laporanpenjualan', [laporanController::class, 'laporanpPenjualan'])->name('laporanpenjualan');
-    Route::get('admin/Laporan/laporanstok', [laporanController::class, 'laporanStok'])->name('laporanStok');
-    Route::get('admin/Laporan/laporanbrgmasuk', [laporanController::class, 'laporanBrgMasuk'])->name('laporanBrgMasuk');
+    Route::controller(laporanController::class)->group(function () {
+        Route::get('admin/Laporan/laporanbrgkeluar',  'laporanBrgKeluar')->name('laporanBrgKeluar');
+        Route::get('admin/Laporan/laporanpenjualan',  'laporanpPenjualan')->name('laporanpenjualan');
+        Route::get('admin/Laporan/laporanstok',  'laporanStok')->name('laporanStok');
+        Route::get('admin/Laporan/laporanbrgmasuk',  'laporanBrgMasuk')->name('laporanBrgMasuk');
 
-    // pengguna
-    Route::get('admin/pengguna', [pengunaController::class, 'index'])->name('pengguna');
-    Route::put('admin/pengguna', [pengunaController::class, 'updateStatus'])->name('updateStatus');
-    Route::post('admin/pengguna/tambah', [pengunaController::class, 'store'])->name('tambahpengguna');
-    Route::get('admin/pengguna/{id}', [pengunaController::class, 'destroy'])->name('destroypengguna');
+        //laporan untuk barang masuk
+        Route::get('admin/Laporan/laporanbrgmasuk/brgmskpdf',  'printBrgMskPDF')->name('cetakBrgMasukpdf');
+        //laporan untuk penjualan
+        Route::get('admin/Laporan/laporanpenjualan/pdf',  'printPenjualanPDF')->name('cetakPenjualanpdf');
+        //laporan untuk stok barang
+        Route::get('admin/Laporan/laporanstok/stokpdf',  'printStokPDF')->name('cetakStokpdf');
+        //laporan untuk stok barang Keluar
+        Route::get('admin/Laporan/laporanstok/brgklrpdf',  'printBrgKlrPDF')->name('cetakBrgkeluarpdf');
+    });
+
+    Route::controller(pengunaController::class)->group(function () {
+        // pengguna
+        Route::get('admin/pengguna', 'index')->name('pengguna');
+        Route::put('admin/pengguna', 'updateStatus')->name('updateStatus');
+        Route::post('admin/pengguna/tambah', 'store')->name('tambahpengguna');
+        Route::get('admin/pengguna/{id}', 'destroy')->name('destroypengguna');
+    });
 
     // sopir
     Route::controller(sopirController::class)->group(function () {
@@ -110,8 +126,11 @@ Route::group(['middleware' => ['isAdmin']], function () {
     });
 
     // outlet
-    Route::get('admin/outlet', [outletController::class, 'index'])->name('outlet');
-    Route::get('admin/outlet/{id}', [outletController::class, 'destroy'])->name('destroyOutlet');
+    Route::controller(outletController::class)->group(function () {
+        route::post('admin/outletTambah', 'store')->name('storeOutlet');
+        Route::get('admin/outlet', 'index')->name('outlet');
+        Route::get('admin/outlet/{id}', 'destroy')->name('destroyOutlet');
+    });
 });
 
 Route::group(['middleware' => ['isGudang']], function () {
@@ -151,17 +170,25 @@ Route::group(['middleware' => ['isGudang']], function () {
     // pengiriman
     Route::get('gudang/pengiriman', [pengirimanController::class, 'index'])->name('pengiriman');
     Route::post('gudang/pengiriman', [pengirimanController::class, 'store'])->name('pengirimanBarang');
-
-
     // rute
     Route::get('admin/track', [trackController::class, 'index'])->name('track');
 
-
     // Laporan
-    Route::get('gudang/Laporan/laporanbarang', [gudangLaporan::class, 'laporanBarang'])->name('laporanBarangGudang');
-    Route::get('gudang/Laporan/laporanpenjualan', [gudangLaporan::class, 'laporanpPenjualan'])->name('laporanpenjualanGudang');
-    Route::get('gudang/Laporan/laporanstok', [gudangLaporan::class, 'laporanStok'])->name('laporanStokGudang');
-    Route::get('gudang/Laporan/laporanbrgmasuk', [gudangLaporan::class, 'laporanBrgMasuk'])->name('laporanBrgMasukGudang');
+    Route::controller(gudangLaporan::class)->group(function () {
+        Route::get('gudang/Laporan/laporanbrgkeluar', 'laporanBrgkeluar')->name('laporanBrgkeluarGudang');
+        Route::get('gudang/Laporan/laporanpenjualan', 'laporanpPenjualan')->name('laporanpenjualanGudang');
+        Route::get('gudang/Laporan/laporanstok', 'laporanStok')->name('laporanStokGudang');
+        Route::get('gudang/Laporan/laporanbrgmasuk', 'laporanBrgMasuk')->name('laporanBrgMasukGudang');
+
+        //laporan untuk penjualan
+        Route::get('gudang/Laporan/laporanpenjualan/penjualanpdf',  'printPenjualanPDFgudang')->name('cetakPenjualanpdfgudang');
+        //laporan untuk penjualan
+        Route::get('gudang/Laporan/laporanbrgmasuk/brgMasukpdf',  'printBrgMskPDFgudang')->name('cetakBrgMasukpdfgudang');
+        //laporan untuk stok barang
+        Route::get('gudang/Laporan/laporanstok/stokpdf',  'printStokPDFgudang')->name('cetakStokpdfgudang');
+        // //laporan untuk barang keluar
+        Route::get('admin/Laporan/laporanbrgkeluar/brgkeluarpdf',  'printBrgkeluarPDFgudang')->name('cetakBrgkeluargudang');
+    });
 });
 
 Route::group(['middleware' => ['isPengguna']], function () {
@@ -177,6 +204,7 @@ Route::group(['middleware' => ['isPengguna']], function () {
         route::get('/Pengguna/pemesanan', 'index')->name('PesanBarang');
         route::get('/Pengguna/Pengiriman', 'pengiriman')->name('Pengiriman');
         route::get('/Pengguna/History', 'history')->name('history');
+        route::get('/Pengguna/History/{id}', 'invoiceHistory')->name('inv_history');
 
         // route::post('/admin/jadwal/store', 'store')->name('jadwalStore');
         route::put('/Pengguna/dashboard/Update', 'update')->name('updatePengguna');
@@ -192,19 +220,19 @@ Route::group(['middleware' => ['isPengguna']], function () {
         route::get('/Pengguna/pemesanan/order/{id}', 'destroy')->name('pesananDestroy');
     });
 
-
-    Route::get('Pengguna/Outlet', [outletPenguna::class, 'index'])->name('outletpengguna');
-    Route::post('Pengguna/Outlet', [outletPenguna::class, 'store'])->name('tambahoutletpengguna');
+    Route::controller(outletPenguna::class)->group(function () {
+        Route::get('/Pengguna/Outlet', 'index')->name('outletpengguna');
+        Route::post('/Pengguna/Outlet', 'store')->name('tambahoutletpengguna');
+        Route::get('/Pengguna/Outlet/{id}', 'destroy')->name('outletDestroy');
+        Route::put('/Pengguna/Outlet/Update', 'update')->name('updateOutlet');
+    });
 });
-
 Route::group(['middleware' => ['isSopir']], function () {
-
     Route::get('Sopir/dashboard', [dashboardSopir::class, 'index'])->name('sopirdashboard');
+    Route::get('Sopir/HistorySopir', [dashboardSopir::class, 'history'])->name('historysopir');
+    Route::get('Sopir/Jdwal', [dashboardSopir::class, 'jadwal'])->name('jadwalsopir');
+
 
     Route::get('Sopir/Track', [trackController::class, 'index'])->name('TrackBaru');
-    Route::post('admin/track', [trackController::class, 'store'])->name('trackStore');
-
-    Route::get('Sopir/HistorySopir', [dashboardSopir::class, 'history'])->name('historysopir');
-
-    Route::get('Sopir/Jdwal', [dashboardSopir::class, 'jadwal'])->name('jadwalsopir');
+    Route::post('Sopir/track', [trackController::class, 'store'])->name('trackStore');
 });

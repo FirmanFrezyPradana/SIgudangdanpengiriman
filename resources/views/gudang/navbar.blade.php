@@ -71,9 +71,6 @@
                 </div>
             </li>
             <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu">
-                <a href="{{route('laporanBarangGudang')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <span class="flex-1 ml-3 whitespace-nowrap">Laporan Barang</span>
-                </a>
                 <a href="{{route('laporanpenjualanGudang')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Laporan penjualan </span>
                 </a>
@@ -82,6 +79,9 @@
                 </a>
                 <a href="{{route('laporanBrgMasukGudang')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <span class="flex-1 ml-3 whitespace-nowrap">Laporan Barang Masuk</span>
+                </a>
+                <a href="{{route('laporanBrgkeluarGudang')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <span class="flex-1 ml-3 whitespace-nowrap">Laporan Barang Keluar</span>
                 </a>
             </div>
             <li>

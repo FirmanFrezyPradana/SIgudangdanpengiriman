@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class tb_sopir extends Model
 {
     use HasFactory;
+    protected $primarykey = 'id';
     protected $fillable = [
         'id',
         'id_user',
@@ -21,5 +22,8 @@ class tb_sopir extends Model
     public function loginData()
     {
         return $this->hasOne(User::class, 'id_user');
+    }
+    public function pengiriman(){
+        return $this->hasMany(tb_pengiriman::class);
     }
 }

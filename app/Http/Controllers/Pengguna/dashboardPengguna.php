@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_outlet;
 use App\Models\tb_rute;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -17,8 +18,14 @@ class dashboardPengguna extends Controller
     public function index()
     {
         $user = auth()->id();
+        $tb_outlet = tb_outlet::where('id_user', $user)->count();
         $data_pengguna = user::where('id', $user)->get();
-        return view('Pengguna.dashboard', ['data_pengguna' => $data_pengguna]);
+        $array = [
+            'data_pengguna' => $data_pengguna,
+            'tb_outlet' => $tb_outlet,
+
+        ];
+        return view('Pengguna.dashboard', $array);
     }
 
     public function update(Request $request)

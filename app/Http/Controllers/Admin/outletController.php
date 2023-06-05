@@ -17,14 +17,25 @@ class outletController extends Controller
     }
     public function index()
     {
+        $data_pengguna = User::all()->where('id_pegawai', '3');
         $data_outlet = DB::table('users')
             ->join('tb_outlets', 'users.id', '=', 'tb_outlets.id_user')
             ->get();
-        return view('admin.outlet.index', ['data_outlet' => $data_outlet]);
+        $array = [
+            'data_outlet' => $data_outlet,
+            'data_pengguna' => $data_pengguna,
+        ];
+        return view('admin.outlet.index', $array);
     }
-    public function destroy($id)
+    public function store(Request $request)
     {
-        tb_outlet::find($id)->delete();
-        return redirect()->route('outlet')->with('message', 'Berhasil Dihapus');
+        $outlet = new tb_outlet([
+            'nama_outlet' => $request->nama_outlet,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            'id_user' => $request->user_id
+        ]);
+        $outlet->save();
+        return redirect()->route('outlet');
     }
 }

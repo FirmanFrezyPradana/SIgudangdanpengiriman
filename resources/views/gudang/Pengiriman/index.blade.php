@@ -24,13 +24,13 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ( $data_pengiriman as $pengiriman )
+                @foreach ( $data_pengiriman as $pengiriman )
                 <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pengiriman->pemesanan_kode}}
+                        {{ $pengiriman->pemesanan_kode }}
                     </td>
                     <th scope="px-6 py-4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pengiriman->kendaraan->jenis_kendaraan}}
+                        {{$pengiriman->kendaraan->nomor_polisi}}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pengiriman->jadwal->sesi_pengiriman }}
@@ -42,11 +42,11 @@
                         {{$pengiriman->status}}
                     </td>
                 </tr>
-                @empty
-                <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                @endforeach
+                <!-- <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white" colspan="7">Tidak Ada pPengiriman</td>
-                </tr>
-                @endforelse
+                </tr> -->
+
 
             </tbody>
         </table>

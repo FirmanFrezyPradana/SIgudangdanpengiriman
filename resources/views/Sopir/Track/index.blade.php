@@ -33,10 +33,10 @@
                         {{$pengiriman->pemesanan_kode}}
                     </td>
                     <th scope="px-6 py-4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pengiriman->kendaraan->jenis_kendaraan}}
+                        {{$pengiriman->kendaraan->nomor_polisi}}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pengiriman->jadwal->sesi_pengiriman }}
+                        {{$pengiriman->jadwal->jam_berangkat }}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pengiriman->sopir->user->nama_pengguna}}

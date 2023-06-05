@@ -43,7 +43,7 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pesanan->status_pemesanan}}
                     </th>
-                    @if ($pesanan->status_pemesanan == 'Diproses Gudang')
+                    @if ($pesanan->status_pemesanan == 'Diproses Gudang' || $pesanan->status_pemesanan == 'Pesanan Selesai')
                     <td class="px-6 py-4">
                         <i class="bi bi-trash-fill"></i>
                     </td>

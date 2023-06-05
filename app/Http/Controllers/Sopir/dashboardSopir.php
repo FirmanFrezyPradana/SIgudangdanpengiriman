@@ -19,13 +19,18 @@ class dashboardSopir extends Controller
     public function index()
     {
         $user = auth()->id();
+        $count = tb_pengiriman::where('id', $user)->count();
         $data_sopir = User::where('id', $user)->get();
-        return view('Sopir.dashboard', ['data_sopir' => $data_sopir]);
+        $array = [
+            'data_sopir' => $data_sopir,
+            'count' => $count,
+        ];
+        return view('Sopir.dashboard', $array);
     }
     public function history()
     {
         $user = auth()->id();
-        $data_pengiriman_selesai = tb_pengiriman::where('status', 'Pesanan selesai')
+        $data_pengiriman_selesai = tb_pengiriman::where('status', 'Pesanan Selesai')
             ->orWhere('id_sopir', $user)
             ->get();
         return view('Sopir.History.index', ['data_pengiriman_selesai' => $data_pengiriman_selesai]);

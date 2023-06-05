@@ -4,11 +4,11 @@
 <div class="w-full p-4 ">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <a href="{{route('pemesanan')}}">
+            <!-- <a href="{{route('pemesanan')}}">
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                     + Pemesanan
                 </button>
-            </a>
+            </a> -->
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-gra-400 dark:text-white">
                     <th scope="col" class="px-6 py-3">
@@ -35,7 +35,7 @@
                         {{$pesanan->kode_pemesanan}}
                     </td>
                     <th scope="px-6 py-4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$pesanan->id_outlet}}
+                        {{$pesanan->nama_outlet}}
                     </th>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$pesanan->tanggal_pemesanan}}
@@ -82,11 +82,11 @@
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sopir</label>
+                                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Sopir</label>
                                         <select id="countries" name="id_sopir" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option selected>-Pilih Sopir-</option>
                                             @foreach ( $data_sopir as $sopir )
-                                            <option value="{{$sopir->id}}">{{ $sopir->user->nama_pengguna }}</option>
+                                            <option value="{{$sopir->id}}">{{ $sopir->user->nama_pengguna}}</option>
                                             @endforeach
                                         </select>
                                     </div>

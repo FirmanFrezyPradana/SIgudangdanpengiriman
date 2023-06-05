@@ -17,14 +17,16 @@ class tb_pengiriman extends Model
         'id_sopir',
         'status',
     ];
-    // public function pemesanan()
-    // {
-    //     return $this->hbelongsTo(tb_pemesanan::class, 'pemesanan_kode', 'kode_pemesanan');
-    // }
+    public function pemesanan()
+    {
+        return $this->belongsTo(tb_pemesanan::class, 'pemesanan_kode','kode_pemesanan');
+    }
+
     public function kendaraan()
     {
         return $this->belongsTo(tb_kendaraan::class, 'id_kendaraan');
     }
+
     public function jadwal()
     {
         return $this->belongsTo(tb_jadwal::class, 'id_jadwal');
@@ -37,4 +39,8 @@ class tb_pengiriman extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+    // public function rute()
+    // {
+    //     return $this->hasMany(tb_rute::class);
+    // }
 }

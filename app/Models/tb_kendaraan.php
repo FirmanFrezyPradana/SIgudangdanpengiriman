@@ -16,4 +16,9 @@ class tb_kendaraan extends Model
         'jenis_kendaraan',
         'jenis_bbm',
     ];
+
+    public function pengiriman()
+    {
+        return $this->hasMany(tb_pengiriman::class);
+    }
 }

@@ -19,9 +19,6 @@
                         Kode Barang
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama Barang
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Tanggal
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -46,10 +43,11 @@
                         {{$brgmasuk->kode_masuk}}
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$brgmasuk->barang->kode_barang}}
-                    </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$brgmasuk->barang->nama_barang}}
+                        @foreach ($data_barang as $brg)
+                        @if ($brgmasuk->id_barang == $brg->id)
+                        {{$brg->kode_barang}}
+                        @endif
+                        @endforeach
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$brgmasuk->tanggal_masuk}}
@@ -123,11 +121,11 @@
                 <form class="space-y-6" action="{{route('storeBrgMasuk')}}" method="post">
                     @csrf
                     <div>
-                        <label for="kode_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Barang</label>
+                        <label for="kode_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Barang Masuk</label>
                         <input type="text" name="kode_masuk" id="kode_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <div>
-                        <label for="id_barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                        <label for="id_barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Barang</label>
                         <select id="id_barang" name="id_barang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Pilih kode</option>
                             @foreach ($data_barang as $barang )
@@ -144,7 +142,7 @@
                         <input type="text" name="stoke_masuk" id="stoke_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <div>
-                        <label for="tanggal_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tanggal_masuk</label>
+                        <label for="tanggal_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Masuk</label>
                         <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambahkan Data</button>

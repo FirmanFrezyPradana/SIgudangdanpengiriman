@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\tb_outlet;
 use App\Models\tb_pegawai;
+use App\Models\tb_pemesanan;
+use App\Models\tb_sopir;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +55,9 @@ class pengunaController extends Controller
 
     public function destroy($id)
     {
+        tb_pemesanan::where('user_id', $id)->delete();
+        tb_sopir::Where('id_user', $id)->delete();
+        tb_outlet::where('id_user', $id)->delete();
         User::find($id)->delete();
         return redirect()->route('pengguna')->with('message', 'Berhasil Dihapus');
     }

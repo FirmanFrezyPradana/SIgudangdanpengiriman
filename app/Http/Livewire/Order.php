@@ -147,8 +147,8 @@ class Order extends Component
                 'kode_pemesanan' => $this->KodePemesanan,
                 'jumlah_pesanan' => $items['qty'],
                 'satuan' => $barang->satuan,
-                'total_harga' => $items['harga'],
-                'total_pemesanan' => $items['total'],
+                'total_harga' => $items['total'],
+                'total_pemesanan' => $this->totalHarga,
                 'tanggal_pemesanan' => $this->tangggal_pemesanan,
                 'status_pemesanan' => 'Belum Diproses',
             ]);
@@ -183,7 +183,7 @@ class Order extends Component
             'outlets' => tb_outlet::where('id_user', Auth::user()->id)->get(),
             'orders' => tb_barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('nama_barang', 'like', '%' . $this->search . '%')
-                ->paginate(2),
+                ->paginate(3),
             'keranjang' => $this->keranjang
         ]);
     }

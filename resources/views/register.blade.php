@@ -24,7 +24,7 @@
         @endif
         <div class="w-full shadow-lg max-w-sm bg-white p-8 lg:p-12 rounded-lg leading-normal">
             <div class="text-3xl font-light uppercase mb-6 ">Register</div>
-            <form action="{{route('actionregister')}}" method="post">
+            <form action="{{route('actionregister')}}" method="post" autocomplete="off">
                 @csrf
                 <div class="mb-5">
                     <label for="" class="text-lg mb-2 text-gray-300 block">Nama</label>

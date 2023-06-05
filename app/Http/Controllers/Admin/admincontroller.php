@@ -7,6 +7,7 @@ use App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\tb_gudang;
 use App\Models\tb_outlet;
+use App\Models\tb_rute;
 use App\Models\User;
 use Termwind\Components\Dd;
 
@@ -34,7 +35,15 @@ class admincontroller extends Controller
             'outlet' => $outlet,
 
         ];
-
         return view('admin/dashboard', $array);
+    }
+    public function trackRute(Request $request)
+    {
+        $input = $request->kode_pengiriman;
+        // Lakukan pencarian berdasarkan input
+        $results = tb_rute::where('kode_invoice', 'like', '%' . $input . '%')->get();
+
+        // Return hasil pencarian dalam format JSON
+        return response()->json($results);
     }
 }

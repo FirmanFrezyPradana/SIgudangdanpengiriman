@@ -24,9 +24,6 @@
                     <th scope="col" class="px-6 py-3">
                         Pemilik
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        action
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -50,10 +47,6 @@
                     <td class="px-6 py-4">
                         {{$outlet->nama_pengguna}}
                     </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ route('destroyOutlet', ['id' => $outlet->id ]) }}" class=" text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="bi bi-trash3"></i></a>
-                        <a href="#" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><i class="bi bi-pencil-square"></i></a>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -74,10 +67,11 @@
             </button>
             <div class="px-6 py-6 lg:px-8">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Input Data Outlet</h3>
-                <form class="space-y-6" action="#">
+                <form class="space-y-6" action="{{route('storeOutlet')}}" method="post" autocomplete="off">
+                    @csrf
                     <div>
-                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Outlet</label>
-                        <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                        <label for="nama_outlet" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
+                        <input type="text" name="nama_outlet" id="nama_outlet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
                     <div>
                         <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
@@ -87,6 +81,15 @@
                         <label for="telepon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telepon</label>
                         <input type="text" name="telepon" id="telepon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
+
+                    <label for="counuser_idtries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pelanggan</label>
+                    <select id="user_id" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Pemilik Outlet</option>
+                        @foreach ($data_pengguna as $pengguna )
+                        <option value="{{$pengguna->id}}">{{$pengguna->nama_pengguna}}</option>
+                        @endforeach
+                    </select>
+
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambahkan Data</button>
                 </form>
             </div>
